@@ -1,4 +1,7 @@
 """
+First Missing Integer
+=====================
+
 Given an unsorted integer array, find the first missing positive integer.
 
 Example
@@ -28,6 +31,8 @@ and is checked whether it needs to move at most twice.
 
 After such reordering, search of the first missing positive is obvious and is done in O(N).
 """
+
+from __future__ import print_function
 
 
 def swap(arr, i, j):
