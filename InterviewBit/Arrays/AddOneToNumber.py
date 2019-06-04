@@ -21,13 +21,11 @@ from __future__ import print_function
 
 
 def add_one(v):
-    carry = True
     for i in range(len(v)-1, -1, -1):
-        if not carry:
-            break
-        carry = v[i] == 9
         v[i] = (v[i] + 1) % 10
-    if i == 0 and carry:
+        if v[i]:
+            break
+    else:
         v.insert(0, 1)
     return v
 
