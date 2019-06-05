@@ -54,7 +54,7 @@ def merge_intervals(intervals, new_interval):
 
 
 for intervals, new_int in (
-            ([[1,3],[6,9]], [2,5]),
-            ([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,9]),
-        ):
+        ([[1,3],[6,9]], [2,5]),
+        ([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,9]),
+    ):
     print(intervals, '+', new_int, '=', list(merge_intervals(intervals, new_int)))
