@@ -27,18 +27,18 @@ def max_unsorted_subarray(a):
     sub_min = min(a[l:r+1])
     sub_max = max(a[l:r+1])
 
-    while l >= 0:
-        if a[l] <= sub_min:
+    while l >= 1:
+        if a[l-1] <= sub_min:
             break
         l -= 1
 
-    while r < n:
-        if a[r] >= sub_max:
+    while r < n-1:
+        if a[r+1] >= sub_max:
             break
         r += 1
 
-    return l, r, a[l:r]
+    return l, r, a[l:r+1]
 
 
-arr = [3,2,1]
+arr = [0,1,3,2,5,4,6,7]
 print(arr, max_unsorted_subarray(arr))
