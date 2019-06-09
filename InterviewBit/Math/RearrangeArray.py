@@ -22,6 +22,8 @@ arr2 = [b2, b2, ...]
 
 arr = [a1*n+b1, a2*n+b2, ...]
 With this trick arr1[i] = arr[i]/n and arr2[i] = arr[i]%n
+
+Time complexity O(N), extra space O(1)
 """
 
 from __future__ import print_function
