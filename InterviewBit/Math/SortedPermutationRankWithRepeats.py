@@ -38,17 +38,24 @@ def letter_ind(c):
     return ord(c) - ord('a')
 
 
+def mod_pow(a, n, m):
+    # Calculates fast exponent a**n mod m in O(log(n))
+    res = 1
+    exp = a
+    while n:
+        if n & 1:
+            res = res*exp % m
+        exp = exp*exp % m
+        n >>= 1
+    return res
+
+
 def mult_inverse(a, m):
     # Finds multiplicative inverse b of a in modular arithmetic.
-    # a * b mod
-    # Does so in linear time O(m)
-    if a == 0:
-        # Not determined
-        return None
-    # Always returns if m is prime
-    for i in range(1, m):
-        if a*i % m == 1:
-            return i
+    # a*b mod m = 1
+    # b = a**(phi(m)-1) = a**(m-2) for prime m, where phi(m) - Euler's totient function
+    # Time complexity O(log(m))
+    return mod_pow(a, m-2, m)
 
 
 def permutation_rank(s, m=1000003):
@@ -86,4 +93,4 @@ def permutation_rank(s, m=1000003):
     return rank+1
 
 
-print(permutation_rank('aba'))
+print(permutation_rank('cabacc'))
