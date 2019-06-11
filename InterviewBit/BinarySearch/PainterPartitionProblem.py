@@ -41,6 +41,8 @@ in K consecutive chunks such that the sum in each chunk is less that I.
 2. I*T is the answer
 
 Time complexity: O(N*log(S))
+
+Note: Allocate Books problem is the same rephrased problem with T=1.
 """
 
 from __future__ import print_function
