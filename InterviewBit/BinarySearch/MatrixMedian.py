@@ -29,6 +29,8 @@ For all matrix that number is a sum for each row, and can be found in O(N*log(M)
 3. To find matrix median we do binary search between min and max value until the number of elements in matrix below x is N*M/2.
 As max-min fits in 32 bits there would be not more that 32 iterations.
 So overall time complexity O(32*N*log(M)) = O(N*log(M)), extra space O(1).
+
+Note: Median of Array problem is analogous to this.
 """
 
 from __future__ import print_function
