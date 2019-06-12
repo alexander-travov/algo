@@ -48,6 +48,9 @@ For array of non-negative integers we can get the sum of pairwise Hamming distan
 by adding 32 sums of pairwise Hamming distances for every bit.
 
 Complexity O(N) time, O(1) space.
+
+Note:
+Problem "Different Bits Sum Pairwise" from Bit Manipulation topic is the same rephrased problem.
 """
 
 from __future__ import print_function
