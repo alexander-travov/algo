@@ -2,7 +2,8 @@
 Min XOR value
 =============
 
-Given an array of N integers, find the pair of integers in the array which have minimum XOR value. Report the minimum XOR value.
+Given an array of N integers, find the pair of integers in the array which have minimum XOR value.
+Report the minimum XOR value.
 
 Examples :
 Input
@@ -37,3 +38,69 @@ So we can sort array and find min XOR with linear search.
 
 Time complexity: O(n log(n)), extra space O(1).
 """
+
+from __future__ import print_function
+import sys
+
+
+class Node:
+    def __init__(self):
+        self.children = [None, None]
+
+    def value(self, order='min'):
+        """
+        Reads value of min/max integer stored in trie from this node.
+        """
+        # order in which child nodes are traversed
+        bits = (0, 1) if order=='min' else (1, 0)
+
+        node = self
+        v = 0
+        while True:
+            ch = node.children
+            # Leaf
+            if not any(ch):
+                break
+            for b in bits:
+                if ch[b]:
+                    break
+            node = ch[b]
+            v <<= 1
+            v += b
+        return v
+
+    def xor(self):
+        """
+        Gets XOR value of min and max numbers stored from this node.
+        """
+        return self.value('min') ^ self.value('max')
+
+
+class MinXORTrie:
+    def __init__(self):
+        self.root = Node()
+        self.min_xor = sys.maxsize
+
+    def insert(self, n):
+        node = self.root
+        split_node = None
+
+        for i in range(31, -1, -1):
+            bit = (n>>i) & 1
+            if node.children[bit] is None:
+                # Save the first nonexistent split
+                if split_node is None:
+                    split_node = node
+                node.children[bit] = Node()
+            node = node.children[bit]
+
+        if split_node and all(split_node.children):
+            self.min_xor = min(self.min_xor, split_node.xor())
+
+
+t = MinXORTrie()
+arr = [0, 4, 7, 9, 2, 1]
+for n in arr:
+    t.insert(n)
+    print(n, t.min_xor)
+print(t.min_xor)
