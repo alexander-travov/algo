@@ -12,6 +12,16 @@ given array S = {-1 2 1 -4},
 and target = 1.
 
 The sum that is closest to the target is 2. (-1 + 2 + 1 = 2)
+
+Solution
+--------
+
+1. Sort array in O(Nlog(N))
+2. For every element in array find the closest to target-elemnt sum of two with two pointers technique.
+
+Time complexity O(N^2)
+
+Note: 3 Sum Zero is a slight modification of this problem.
 """
 
 from __future__ import print_function
