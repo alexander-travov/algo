@@ -18,6 +18,8 @@ C : [ 2, 3, 6, 6 ]
 Output:
 
 1
+
+Problem "Array 3 Pointers" is the same.
 """
 
 from __future__ import print_function
