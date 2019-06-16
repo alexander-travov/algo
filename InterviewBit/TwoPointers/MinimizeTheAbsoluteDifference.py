@@ -51,9 +51,26 @@ def find_min_diff(A, B, C):
     ])
 
 
-A = [ 1, 4, 5, 8, 10]
-B = [ 6, 9, 15]
-C = [ 2, 3, 6, 6]
+def find_min_diff2(A, B, C):
+    i = j = k = 0
+    diff = sys.maxsize
+
+    while i<len(A) and j<len(B) and k<len(C):
+        max3 = max(A[i], B[j], C[k])
+        min3 = min(A[i], B[j], C[k])
+        diff = min(diff, max3 - min3)
+        if min3 == A[i]:
+            i += 1
+        elif min3 == B[j]:
+            j += 1
+        else:
+            k += 1
+    return diff
+
+
+A = [1, 4, 5, 8, 10]
+B = [6, 9, 15]
+C = [2, 3, 6, 7]
 
 
 print(find_min_diff(A, B, C))
