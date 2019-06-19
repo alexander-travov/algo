@@ -31,6 +31,7 @@ Time complexity for generating sliding window max is O(N).
 """
 
 from __future__ import print_function
+import sys
 
 
 class MaxStack:
@@ -79,7 +80,13 @@ class MaxQueue:
         return self.tail.pop()
 
     def getMax(self):
-        return max(self.head.getMax(), self.tail.getMax())
+        m1 = self.head.getMax()
+        if m1 is None:
+            m1 = -sys.maxsize
+        m2 = self.tail.getMax()
+        if m2 is None:
+            m2 = -sys.maxsize
+        return max(m1, m2)
 
 
 def window_max(arr, w):
