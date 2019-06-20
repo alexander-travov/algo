@@ -68,6 +68,15 @@ class Node:
         node.next.next = tail
         return self
 
+    def remove(self, n):
+        if n >= len(self):
+            raise LinkedListException("Not enough elements")
+        if n == 0:
+            return self.next
+        prev = self.nth(n-1)
+        prev.next = prev.next.next
+        return self
+
     def split(self, n):
         """
         Splits list in two parts after the n'th element.
