@@ -36,7 +36,7 @@ class Sudoku:
             n = self.cells[r][col]
             ch[n] = False
 
-        r, c = row // 3, col // 3
+        r, c = 3*(row//3), 3*(col//3)
         for i in range(3):
             for j in range(3):
                 n = self.cells[r+i][c+j]
@@ -63,7 +63,7 @@ class Sudoku:
         for r in range(9):
             self.choices[r][col][val] = False
 
-        r, c = row // 3, col // 3
+        r, c = 3*(row//3), 3*(col//3)
         for i in range(3):
             for j in range(3):
                 self.choices[r+i][c+j][val] = False
@@ -74,15 +74,15 @@ class Sudoku:
         self.num_set_cells -= 1
 
         for c in range(9):
-            self.choices[row][c][val] = True
+            self.choices[row][c] = self._init_choices(row, c)
 
         for r in range(9):
-            self.choices[r][col][val] = True
+            self.choices[r][col] = self._init_choices(r, col)
 
-        r, c = row // 3, col // 3
+        r, c = 3*(row//3), 3*(col//3)
         for i in range(3):
             for j in range(3):
-                self.choices[r+i][c+j][val] = True
+                self.choices[r+i][c+j] = self._init_choices(r+i, c+j)
 
     def num_choices(self, row, col):
         return sum(self.choices[row][col])
@@ -135,15 +135,15 @@ s = Sudoku([
     'xxxx8xx79'
 ])
 
-# s = Sudoku([
-#     'xx5xxxxxx',
-#     'xxxxx7x31',
-#     'xx86xxx4x',
-#     'x948xxxxx',
-#     'x5xxx6xxx',
-#     '81xxx5xxx',
-#     'xxx37x4x5',
-#     'xx14xxx6x',
-#     'x7xxxxxxx',
-# ])
-# solve(s)
+s = Sudoku([
+    '6xx3xxxxx',
+    'x13x6xxxx',
+    'xxxx9xx8x',
+    '4xxxx5xxx',
+    'x6xxx4x9x',
+    'x3xxxx7xx',
+    '8xxxxx25x',
+    'xxx8x1xx9',
+    'x4x9xxxx1',
+])
+solve(s)
