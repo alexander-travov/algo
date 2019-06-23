@@ -81,11 +81,12 @@ def find_queens(board, row=0):
         yield str(board)
     else:
         for c in range(board.n):
-            if board.hits[row][c] == 0:
-                board.queen(row, c)
-                for pos in find_queens(board, row+1):
-                    yield pos
-                board.queen(row, c, remove=True)
+            if board.hits[row][c]:
+                continue
+            board.queen(row, c)
+            for pos in find_queens(board, row+1):
+                yield pos
+            board.queen(row, c, remove=True)
 
 
 if __name__ == '__main__':
