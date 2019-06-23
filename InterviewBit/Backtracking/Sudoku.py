@@ -89,7 +89,7 @@ class Sudoku:
 
 
 def solve(sudoku):
-    print(sudoku.num_set_cells)
+    # print(sudoku.num_set_cells)
     if sudoku.num_set_cells == 81:
         return sudoku
 
@@ -112,28 +112,16 @@ def solve(sudoku):
     for val in range(1, 10):
         if not sudoku.choices[min_r][min_c][val]:
             continue
-        print(sudoku)
-        print('In pos: ({}, {}) setting {} from {} choices.'.format(
-            min_r, min_c, val, sudoku.choices[min_r][min_c]))
+        # print(sudoku)
+        # print('In pos: ({}, {}) setting {} from {} choices.'.format(
+        #     min_r, min_c, val, sudoku.choices[min_r][min_c]))
         sudoku.set_cell(min_r, min_c, val)
         solution = solve(sudoku)
         if solution:
             return solution
-        print('Deadend: Free cell: ({}, {})'.format(min_r, min_c))
+        # print('Deadend: Free cell: ({}, {})'.format(min_r, min_c))
         sudoku.free_cell(min_r, min_c)
 
-
-s = Sudoku([
-    '53xx7xxxx',
-    '6xx195xxx',
-    'x98xxxx6x',
-    '8xxx6xxx3',
-    '4xx8x3xx1',
-    '7xxx2xxx6',
-    'x6xxxx28x',
-    'xxx419xx5',
-    'xxxx8xx79'
-])
 
 s = Sudoku([
     '6xx3xxxxx',
@@ -146,4 +134,4 @@ s = Sudoku([
     'xxx8x1xx9',
     'x4x9xxxx1',
 ])
-solve(s)
+print(solve(s))
