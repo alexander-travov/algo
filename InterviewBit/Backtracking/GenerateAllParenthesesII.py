@@ -18,9 +18,9 @@ def generate_parentheses(n):
     if n == 0:
         yield ''
     else:
-        for k in range(n, 0, -1):
-            for par1 in generate_parentheses(k-1):
-                for par2 in generate_parentheses(n-k):
+        for k in range(n):
+            for par1 in generate_parentheses(n-k-1):
+                for par2 in generate_parentheses(k):
                     yield '(' + par1 + ')' + par2
 
 
