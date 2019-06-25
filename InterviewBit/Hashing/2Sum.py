@@ -13,6 +13,8 @@ If there are multiple solutions with the minimum index2, choose the one with min
 
 Input: [2, 7, 11, 15], target=9
 Output: index1 = 1, index2 = 2
+
+Note: Diffk II problem is solved with the same trick.
 """
 
 from __future__ import print_function
