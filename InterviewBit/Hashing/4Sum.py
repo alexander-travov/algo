@@ -16,6 +16,8 @@ A solution set is:
     (-2, -1, 1, 2)
     (-2,  0, 0, 2)
     (-1,  0, 0, 1)
+
+Note: Equal problem uses the same trick of finding a hashmap of pair sums.
 """
 
 from __future__ import print_function
