@@ -13,6 +13,9 @@ Example :
 S = "ADOBECODEBANC"
 T = "ABC"
 Minimum window is "BANC"
+
+Note: "Distinct Numbers in Window" problem from Heaps and Maps
+is very similar to that problem and can be solved with the same Counter data structure.
 """
 
 from __future__ import print_function
