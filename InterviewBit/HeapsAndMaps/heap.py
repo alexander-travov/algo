@@ -42,3 +42,12 @@ class MinHeap(list):
             self[0] = last_kv
             self._sift_down(0)
         return min_kv
+
+    @classmethod
+    def from_iterable(cls, it):
+        h = cls()
+        for k, v in it:
+            h.append((k, v))
+        for ind in range(len(h)-1, -1, -1):
+            h._sift_down(ind)
+        return h
