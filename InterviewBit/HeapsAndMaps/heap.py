@@ -20,7 +20,7 @@ class MinHeap(list):
         min_ch = left_ch
         if right_ch < len(self) and self[right_ch][0] < self[left_ch][0]:
             min_ch = right_ch
-        if self[ind] > self[min_ch]:
+        if self[ind][0] > self[min_ch][0]:
             self._swap(ind, min_ch)
             self._sift_down(min_ch)
 
