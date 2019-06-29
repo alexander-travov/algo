@@ -36,74 +36,36 @@ Time complexity O(Nlog(N)), space complexity O(N)
 """
 
 from __future__ import print_function
+from heap import MinHeap
 
 
-class MinHeap(list):
-    def _swap(self, i, j):
-        tmp = self[i]
-        self[i] = self[j]
-        self[j] = tmp
-
-    def _sift_up(self, ind):
-        if ind == 0:
-            return
-        parent = (ind-1) // 2
-        if self[ind][0] < self[parent][0]:
-            self._swap(ind, parent)
-            self._sift_up(parent)
-
-    def _sift_down(self, ind):
-        left_ch = 2*ind + 1
-        right_ch = 2*ind + 2
-        if left_ch >= len(self):
-            return
-        min_ch = left_ch
-        if right_ch < len(self) and self[right_ch][0] < self[left_ch][0]:
-            min_ch = right_ch
-        if self[ind] > self[min_ch]:
-            self._swap(ind, min_ch)
-            self._sift_down(min_ch)
-
-    def insert(self, key, value):
-        self.append((key, value))
-        self._sift_up(len(self)-1)
-
-    def get_min(self):
-        if not self:
-            return
-        return self[0]
-
-    def extract_min(self):
-        if not self:
-            return
-        min_kv = self[0]
-        last_kv = self.pop()
-        if self:
-            self[0] = last_kv
-            self._sift_down(0)
-        return min_kv
-
-
-def get_max_pairs(A, B):
+def get_max_pairs(A, B, M=None):
     N = len(A)
+    if not M:
+        M = N
     A.sort()
     B.sort()
 
     h = MinHeap()
     used_pairs = set()
 
-    h.insert(-A[N-1]-B[N-1], (N-1, N-1))
-    for _ in range(N):
-        k, (i, j) = h.extract_min()
-        used_pairs.add((i, j))
-        yield -k
+    val = (N-1, N-1)
+    key = -A[val[0]]-B[val[1]]
+    h.insert(key, val)
+    used_pairs.add(val)
+
+    for _ in range(M):
+        key, (i, j) = h.extract_min()
+        yield -key
         for pair in ((i-1, j), (i, j-1)):
-            if pair in used_pairs:
+            if pair[0]<0 or pair[1]<0 or pair in used_pairs:
                 continue
-            h.insert(-A[pair[0]]-B[pair[1]], pair)
+            key = -A[pair[0]]-B[pair[1]]
+            h.insert(key, pair)
+            used_pairs.add(pair)
 
 
 A = [1, 4, 2, 7, 3]
 B = [2, 5, 1, 4, 6]
-for s in get_max_pairs(A, B):
+for s in get_max_pairs(A, B, 25):
     print(s)
