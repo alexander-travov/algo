@@ -25,16 +25,18 @@ from collections import deque
 
 
 def knight(n, m, start, stop):
-    board = [[-1]*m for _ in range(n)]
-    board[start[0]][start[1]] = 0
-
     q = deque()
+    board = [[-1]*m for _ in range(n)]
+
+    # Add initial point
     q.append(start)
+    board[start[0]][start[1]] = 0
 
     while q:
         row, col = q.popleft()
         num_moves = board[row][col]
 
+        # Found way to the end point.
         if (row, col) == stop:
             return num_moves
 
@@ -51,8 +53,8 @@ def knight(n, m, start, stop):
             r = row + dr
             c = col + dc
             if 0<=r<n and 0<=c<m and board[r][c] == -1:
-                board[r][c] = num_moves+1
                 q.append((r, c))
+                board[r][c] = num_moves+1
 
     return -1
 
