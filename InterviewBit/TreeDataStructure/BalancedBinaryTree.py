@@ -32,10 +32,10 @@ from __future__ import print_function
 
 
 class Node:
-    def __init__(self, data):
+    def __init__(self, data, l=None, r=None):
         self.data = data
-        self.left = None
-        self.right = None
+        self.left = l
+        self.right = r
 
 
 def height_balanced(node):
@@ -43,7 +43,7 @@ def height_balanced(node):
     Returns a height of a tree and a boolean indicating whether it is balanced.
     """
     if node is None:
-        return 0, True
+        return -1, True
 
     if node.left is None and node.right is None:
         return 0, True
@@ -56,10 +56,5 @@ def height_balanced(node):
     return height, balanced
 
 
-n1 = Node(1)
-n2 = Node(2)
-n3 = Node(3)
-n1.left = n2
-n2.right = n3
-
-print(height_balanced(n1))
+print(height_balanced(Node(1, Node(2), Node(3))))
+print(height_balanced(Node(1, Node(2, Node(3)))))
