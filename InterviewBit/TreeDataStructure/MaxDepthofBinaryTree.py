@@ -25,19 +25,19 @@ class Node:
         self.right = right
 
 
-def min_depth(node, depth=0):
+def max_depth(node, depth=0):
     if node.left is None and node.right is None:
         return depth+1
     elif node.left and node.right:
-        return min(
-            min_depth(node.right, depth+1),
-            min_depth(node.left, depth+1)
+        return max(
+            max_depth(node.right, depth+1),
+            max_depth(node.left, depth+1)
         )
     elif node.left:
-        return min_depth(node.left, depth+1)
+        return max_depth(node.left, depth+1)
     else:
-        return min_depth(node.right, depth+1)
+        return max_depth(node.right, depth+1)
 
 
 tree = Node(1, Node(2, Node(5)), Node(3, Node(4), Node(6, Node(7))))
-print(min_depth(tree))
+print(max_depth(tree))
