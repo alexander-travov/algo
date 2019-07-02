@@ -20,6 +20,7 @@ Return the sum = (12 + 13) % 1003 = 25 % 1003 = 25.
 """
 
 from __future__ import print_function
+from itertools import chain
 
 
 class Node:
@@ -29,20 +30,16 @@ class Node:
         self.right = right
 
 
-def number_sum(node):
+def numbers(node):
     # Leaf node
     if node.left is None and node.right is None:
-        return [(node.data, 0)]
-    nums = []
-    if node.left:
-        nums += number_sum(node.left)
-    if node.right:
-        nums += number_sum(node.right)
-    return [
-        (node.data * 10**(d+1) + n, d+1)
-        for n, d in nums
-    ]
+        yield (node.data, 0)
+    for n, d in chain(
+            numbers(node.left) if node.left else [],
+            numbers(node.right) if node.right else []
+        ):
+        yield (node.data * 10**(d+1) + n, d+1)
 
 
-tree = Node(5, Node(4), Node(3, Node(2)))
-print(number_sum(tree))
+tree = Node(5, Node(4), Node(3, Node(2), Node(1)))
+print(sum(n[0] for n in numbers(tree)))
