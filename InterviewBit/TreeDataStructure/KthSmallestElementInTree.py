@@ -41,6 +41,7 @@ class Node:
         for i, el in enumerate(it):
             if i == k:
                 return el
+        raise IndexError
 
     class NodeIterator:
         def __init__(self, root):
@@ -128,3 +129,4 @@ tree = Node(4, Node(2, Node(1), Node(3)), Node(6, Node(5), Node(7)))
 print('Fourth:', tree[3])
 print('Min:', tree[0])
 print('Max:', tree[-1])
+print('Out:', tree[8])
