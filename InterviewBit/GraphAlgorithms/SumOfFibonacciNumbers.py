@@ -30,23 +30,20 @@ def num_fib(n):
     # We should find minimum number of such transitions that get us to zero.
 
     q = deque()
-    num_subtractions = [-1] * (n+1)
     addendums = [[] for _ in range(n+1)]
     q.append(n)
-    num_subtractions[n] = 0
 
     while q:
         k = q.popleft()
-        ns = num_subtractions[k]
+        ns = len(addendums[k])
         for f in fib:
-            if k-f >= 0 and num_subtractions[k-f] == -1:
-                num_subtractions[k-f] = ns+1
+            if k-f >= 0 and not addendums[k-f]:
                 addendums[k-f] = addendums[k] + [f]
                 if k-f == 0:
                     break
                 q.append(k-f)
 
-    return num_subtractions[0], addendums[0]
+    return addendums[0]
 
 
-print(num_fib(4000))
+print(num_fib(40000))
