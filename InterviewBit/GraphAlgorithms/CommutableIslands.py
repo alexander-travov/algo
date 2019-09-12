@@ -1,5 +1,8 @@
 # -*- coding: utf8 -*-
 """
+Commutable Islands
+==================
+
 There are A islands and there are M bridges connecting them. Each bridge has some cost attached to it.
 
 We need to find bridges with minimal cost such that all islands are connected.
