@@ -66,6 +66,9 @@ class Field:
         r, c = key
         self.cells[r][c] = value
 
+    def __str__(self):
+        return '\n'.join(''.join(s) for s in self.cells)
+
     def neighbours(self, row, col):
         for dr, dc in ((-1, 0), (1, 0), (0, -1), (0, 1)):
             r, c = row+dr, col+dc
@@ -91,8 +94,10 @@ def num_shapes(field):
 
 
 field = Field(cells=(
-    list("000X000"),
+    list("X00X00X"),
     list("00XX0X0"),
     list("0X000X0")
 ))
+print(field)
 print(num_shapes(field))
+print(field)
