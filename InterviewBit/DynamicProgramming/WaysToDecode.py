@@ -34,14 +34,13 @@ def ways_to_decode(n):
             if prev_digit not in (1, 2):
                 return 0
             curr, prev = prev, prev
-        # 11-16, 21-26
-        elif curr_digit <= 6 and prev_digit in (1, 2):
+        # 11-19, 21-26
+        elif prev_digit == 1 or (curr_digit <= 6 and prev_digit == 2):
             curr, prev = curr+prev, curr
-        # 7, 8, 9
         else:
             curr, prev = curr, curr
         i += 1
     return curr
 
 
-print(ways_to_decode(12411029))
+print(ways_to_decode(121411029))
