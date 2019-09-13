@@ -23,10 +23,10 @@ Solution
 
 Numbers form Catalan's sequence
 
-So you can use formula:
+So you can use direct formula:
 C(0)=1, C(n+1) = 2(2n+1)C(n)/(n+2)
 
-or calculate directly with:
+or calculate recursively with:
 C(N) = C(N-1)C(0) + C(N-2)C(1) + ... + C(1)C(N-2) + C(0)C(N-1)
 """
 
